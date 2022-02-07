@@ -1,11 +1,13 @@
+package group8;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestMain {
+public class TestApp {
 
     @Test
     public void initialTest() {
-        Assert.assertTrue(Main.isEqualsToOne(1));
+        Assert.assertTrue(App.isEqualsToOne(1));
     }
 
 }
