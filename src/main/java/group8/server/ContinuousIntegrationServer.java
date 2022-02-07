@@ -9,6 +9,10 @@ import java.io.IOException;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 /** 
  Skeleton of a server.ContinuousIntegrationServer which acts as webhook
@@ -31,6 +35,13 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         // for example
         // 1st clone your repository
         // 2nd compile the code
+        System.out.println("Cloned repo");
+        try {
+            Git git = Git.cloneRepository()
+                            .setURI("https://github.com/DD2480-Group-8/DD2480-DECIDE.git").call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
 
         response.getWriter().println("CI job done");
     }
