@@ -5,13 +5,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import group8.Utilities;
-import jdk.jshell.execution.Util;
+import org.apache.maven.shared.invoker.*;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -25,6 +29,16 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
  See the Jetty documentation for API documentation of those classes.
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
+
+    private Invoker invoker;
+
+    public void invokerInit(File repoLocation) {
+        Invoker newInvoker = new DefaultInvoker();
+        newInvoker.setLocalRepositoryDirectory(repoLocation);
+
+        this.invoker = newInvoker;
+    }
+
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
@@ -47,13 +61,30 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         // 1st clone your repository
         // 2nd compile the code
         System.out.println("Cloned repo");
+        File dirLoc = new File("/test/");
         try {
             Git git = Git.cloneRepository()
-                            .setURI("https://github.com/DD2480-Group-8/DD2480-DECIDE.git").call();
+                            .setURI("https://github.com/DD2480-Group-8/DD2480-DECIDE.git")
+                            .setDirectory(dirLoc)
+                            .call();
         } catch (GitAPIException e) {
             e.printStackTrace();
         }
 
+        List<String> goals = Arrays.asList("clean", "test");
+        InvocationRequest req = new DefaultInvocationRequest();
+        req.setBaseDirectory(dirLoc);
+        req.setGoals(goals);
+        invokerInit(dirLoc);
+
+        InvocationResult res = null;
+        try {
+            res = invoker.execute(req);
+        } catch (MavenInvocationException e) {
+            System.out.println("Maven test failed, error code: " + res.getExitCode());
+        }
+
+        response.getWriter().println(res.getExitCode());
         response.getWriter().println("CI job done");
     }
  
