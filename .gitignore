@@ -25,3 +25,6 @@ hs_err_pid*
 # IntelliJ files
 **/.idea/**
 **/target/**
+
+# Remove config from Git
+src/main/java/group8/config.java
