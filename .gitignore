@@ -27,4 +27,4 @@ hs_err_pid*
 **/target/**
 
 # Remove config from Git
-src/main/java/group8/config.java
+src/main/java/group8/Config.java
