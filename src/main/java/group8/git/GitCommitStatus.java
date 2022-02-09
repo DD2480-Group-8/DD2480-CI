@@ -40,8 +40,9 @@ public class GitCommitStatus {
      *
      * @param status Enum Status, will depend on the status of the build and tests
      * @throws IOException If something goes wrong with the Http client this exception is thrown
+     * @return response The response of the HTTP clients HTTP Post to Github
      */
-    public void sendGitStatus(Status status) throws IOException {
+    public CloseableHttpResponse sendGitStatus(Status status) throws IOException {
         JsonObject jsonObject = new JsonObject();
 
         // Possible outcomes: success, error, failure, pending
@@ -72,6 +73,8 @@ public class GitCommitStatus {
 
             // TODO Remove
             System.out.println(response.getStatusLine());
+
+            return response;
         }
 
     }
