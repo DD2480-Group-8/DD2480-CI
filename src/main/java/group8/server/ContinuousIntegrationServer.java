@@ -4,33 +4,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
-import java.io.BufferedReader;
+
+import java.io.File;
 import java.io.IOException;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
+
+import group8.CurrentDate;
+import group8.MavenTester;
+import group8.TestLogger;
 import group8.Utilities;
-import jdk.jshell.execution.Util;
+import group8.git.GitRepoFetcher;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 /** 
  Skeleton of a server.ContinuousIntegrationServer which acts as webhook
  See the Jetty documentation for API documentation of those classes.
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
+
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
-                       HttpServletResponse response) 
-        throws IOException, ServletException
-    {
+                       HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
@@ -38,21 +38,29 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         String requestBody = Utilities.getRequestBodyAsString(request);
         JsonObject requestJson = Utilities.deserializeRequest(requestBody);
 
-        System.out.println(requestJson);
+//        System.out.println(requestJson);
         System.out.println(requestJson.get("ref"));
-        System.out.println(target);
+        System.out.println(String.format("request received on %s", target));
+
+        String currentDate = CurrentDate.getCurrentDate();
 
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
         // 2nd compile the code
-        System.out.println("Cloned repo");
-        try {
-            Git git = Git.cloneRepository()
-                            .setURI("https://github.com/DD2480-Group-8/DD2480-DECIDE.git").call();
-        } catch (GitAPIException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Cloning repo...");
+        File destinationDirectory = new File(String.format("./builds/DD2480-CI-%s", currentDate));
+        GitRepoFetcher repo = new GitRepoFetcher("https://github.com/DD2480-Group-8/DD2480-CI.git");
+        repo.fetchToDestination(destinationDirectory);
+        System.out.println("Repo cloned.");
+
+
+        Process process = MavenTester.mvnVerifyInDirectory(destinationDirectory);
+        TestLogger log = new TestLogger();
+        log.logProcess(process);
+        log.writeLogToDestination(destinationDirectory);
+
+        System.out.println(currentDate);
 
         response.getWriter().println("CI job done");
     }
