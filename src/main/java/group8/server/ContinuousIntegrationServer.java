@@ -4,28 +4,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
+import java.io.File;
+import java.io.IOException;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
+
 import group8.CurrentDate;
 import group8.MavenTester;
 import group8.TestLogger;
 import group8.Utilities;
 import group8.git.GitRepoFetcher;
-import org.apache.maven.shared.invoker.*;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 /** 
  Skeleton of a server.ContinuousIntegrationServer which acts as webhook
@@ -33,21 +26,11 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
 
-//    private Invoker invoker;
-
-//    public void invokerInit(File repoLocation) {
-//        Invoker newInvoker = new DefaultInvoker();
-//        newInvoker.setLocalRepositoryDirectory(repoLocation);
-//
-//        this.invoker = newInvoker;
-//    }
-
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
-                       HttpServletResponse response) 
-        throws IOException, ServletException
-    {
+                       HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
@@ -56,7 +39,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         JsonObject requestJson = Utilities.deserializeRequest(requestBody);
 
 //        System.out.println(requestJson);
-//        System.out.println(requestJson.get("ref"));
+        System.out.println(requestJson.get("ref"));
         System.out.println(String.format("request received on %s", target));
 
         String currentDate = CurrentDate.getCurrentDate();
