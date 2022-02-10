@@ -41,7 +41,7 @@ public class GitCommitStatus {
      * @param status Enum Status, will depend on the status of the build and tests
      * @throws IOException If something goes wrong with the Http client this exception is thrown
      */
-    public static void sendGitStatus(Status status) throws IOException {
+    public void sendGitStatus(Status status) throws IOException {
         JsonObject jsonObject = new JsonObject();
 
         // Possible outcomes: success, error, failure, pending

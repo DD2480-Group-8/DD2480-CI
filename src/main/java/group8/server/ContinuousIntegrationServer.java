@@ -38,15 +38,17 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-        //Sends the PENDING status to github. 
-        GitCommitStatus.sendGitStatus(Status.PENDING);
-
         String requestBody = Utilities.getRequestBodyAsString(request);
         JsonObject requestJson = Utilities.deserializeRequest(requestBody);
 
-//        System.out.println(requestJson);
-        System.out.println(requestJson.get("ref"));
-        System.out.println(String.format("request received on %s", target));
+        // Get necessary data from incoming post request.
+        String commitSha = requestJson.get("after").getAsString();
+        String repoName = requestJson.get("repository").getAsJsonObject().get("name").getAsString();
+        String ownerName = requestJson.get("repository").getAsJsonObject().get("owner").getAsJsonObject().get("name").getAsString();
+        GitCommitStatus commitStatus = new GitCommitStatus(ownerName, repoName, commitSha);
+
+        //Sends the PENDING status to GitHub.
+        commitStatus.sendGitStatus(Status.PENDING);
 
         String currentDate = CurrentDate.getCurrentDate();
 
@@ -71,7 +73,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
 
         //Sends the result of the build to Github.
         Status buildres = LogIO.getBuildResult(destinationPath + "/target/surefire-reports");
-        GitCommitStatus.sendGitStatus(buildres);
+        commitStatus.sendGitStatus(buildres);
 
         response.getWriter().println("CI job done");
     }
