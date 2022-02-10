@@ -70,10 +70,7 @@ public class GitCommitStatus {
             httpPost.setEntity(se);
             CloseableHttpResponse response = httpClient.execute(httpPost);
 
-            // TODO Remove
             System.out.println(response.getStatusLine());
         }
-
     }
-
 }

@@ -15,7 +15,7 @@ public class CurrentDate {
      */
     public static String getCurrentDate() {
         String date = replaceSpaceWithHyphen(new java.util.Date().toString());
-        return replaceColonWithHypn(date);
+        return replaceColonWithHyphen(date);
     }
 
     /**
@@ -45,7 +45,7 @@ public class CurrentDate {
      * @param str a string containing colons
      * @return a string with hyphens instead of colons: "hello:world" -> "hello-world"
      */
-    private static String replaceColonWithHypn(String str) {
+    private static String replaceColonWithHyphen(String str) {
         if (str != null && str.trim().length() > 0) {
             str = str.toLowerCase();
             String patternStr = ":+";

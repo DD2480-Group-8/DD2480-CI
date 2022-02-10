@@ -24,7 +24,6 @@ public class LogIO {
             if(s[s.length-1].equals("xml")){
                 Document xmlLog;  
                 try{
-
                     //Converts the xml file into a Document object.
                     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
                     DocumentBuilder db = dbf.newDocumentBuilder();  
@@ -32,7 +31,6 @@ public class LogIO {
                     xmlLog.getDocumentElement().normalize();
 
                 } catch(Exception e){
-                    //TODO: Consider how exceptions should be handled here. 
                     return Status.ERROR;
                 }
 

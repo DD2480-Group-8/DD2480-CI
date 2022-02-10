@@ -10,7 +10,7 @@ import java.nio.file.FileSystemNotFoundException;
 import java.util.Arrays;
 
 /**
- * Fetches a GitHub repository using JGit.
+ * Clones the specified repo using the jgit API
  */
 public class GitRepoFetcher {
     String repoUrl;
@@ -28,8 +28,8 @@ public class GitRepoFetcher {
     }
 
     /**
-     * Triggers the instance to fetch the desired repo to a certain location
-     * @param destination - the location in which the fetched repo will be stored.
+     * Clones a specified repository to a specific destination directory
+     * @param destination to clone the repository to
      */
     public void fetchToDestination(File destination) {
         try {
