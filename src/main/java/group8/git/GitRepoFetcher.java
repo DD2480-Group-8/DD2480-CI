@@ -5,6 +5,9 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.File;
 
+/**
+ * Clones the specified repo using the jgit API
+ */
 public class GitRepoFetcher {
     String repoUrl;
 
@@ -12,6 +15,10 @@ public class GitRepoFetcher {
         this.repoUrl = repoUrl;
     }
 
+    /**
+     * Clones a specified repository to a specific destination directory
+     * @param destination to clone the repository to
+     */
     public void fetchToDestination(File destination) {
         try {
             Git.cloneRepository()
