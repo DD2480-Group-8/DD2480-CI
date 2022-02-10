@@ -19,6 +19,7 @@ import group8.Status;
 import group8.LogIO;
 import group8.git.GitCommitStatus;
 
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -50,13 +51,14 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         //Sends the PENDING status to GitHub.
         commitStatus.sendGitStatus(Status.PENDING);
 
-        String currentDate = CurrentDate.getCurrentDate();
+        
 
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
         // 2nd compile the code
         System.out.println("Cloning repo...");
+        String currentDate = CurrentDate.getCurrentDate();
         String destinationPath = String.format("./builds/DD2480-CI-%s", currentDate);
         File destinationDirectory = new File(destinationPath);
         GitRepoFetcher repo = new GitRepoFetcher("https://github.com/DD2480-Group-8/DD2480-CI.git");
