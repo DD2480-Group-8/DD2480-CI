@@ -65,4 +65,14 @@ public class UtilitiesTest {
         );
     }
 
+    @Test
+    public void getRefSuffixValidTest() {
+        Assert.assertEquals("issue1", Utilities.getRefSuffix("refs/heads/issue/1"));
+    }
+
+    @Test
+    public void getRefSuffixInvalidTest() {
+        Assert.assertEquals("containsNoSlashes", Utilities.getRefSuffix("containsNoSlashes"));
+    }
+
 }
