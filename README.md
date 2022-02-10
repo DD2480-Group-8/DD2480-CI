@@ -15,11 +15,11 @@ The project uses Java 11.
 Since this project uses many dependencies, the maven-assembly-plugin has been added to package
 all these dependencies together with the source code into a single .jar file.
 
-###Running using CLI:
+### Running using CLI:
 1. `mvn package`in the root directory of the repository
 2. `java -cp target/DD2480-CI-1.0-SNAPSHOT-jar-with-dependencies.jar group8.server.ContinuousIntegrationServer`
 
-###Running via IntelliJ:
+### Running via IntelliJ:
 1. Open repository in IntelliJ
 2. Run the ContinuousIntegrationServer class to start listening for requests on port 8080.
 
