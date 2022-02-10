@@ -7,6 +7,8 @@ import com.google.gson.JsonSyntaxException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Utilities {
 
@@ -41,4 +43,29 @@ public class Utilities {
             return "";
         }
     }
+
+
+    /**
+     * Takes a ref name refs/heads/issue/1 and returns issue1 to be used to sort filesystem.
+     * @param fullRef - Received from GitHub API as refs/heads/issue/1
+     * @return the ref suffix without slashes, i.e. refs/heads/issue/1 -> issue1
+     */
+    public static String getRefSuffix(String fullRef) {
+        String[] splitRef = fullRef.split("/");
+        // if the input string does not contain /, just return the input.
+        if (splitRef.length > 1) {
+            String[] subArray = Arrays.copyOfRange(splitRef, 2, splitRef.length);
+            String branch = "";
+            for (String i: subArray) {
+                branch += i;
+            }
+            return branch;
+        }
+        return fullRef;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getRefSuffix("refs/heads/issue/1"));
+    }
+
 }
