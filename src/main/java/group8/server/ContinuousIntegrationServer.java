@@ -46,6 +46,8 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         String commitSha = requestJson.get("after").getAsString();
         String repoName = requestJson.get("repository").getAsJsonObject().get("name").getAsString();
         String ownerName = requestJson.get("repository").getAsJsonObject().get("owner").getAsJsonObject().get("name").getAsString();
+        String ref = requestJson.get("ref").getAsString();
+        System.out.println(ref);
         GitCommitStatus commitStatus = new GitCommitStatus(ownerName, repoName, commitSha);
 
         //Sends the PENDING status to GitHub.
@@ -61,7 +63,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         String currentDate = CurrentDate.getCurrentDate();
         String destinationPath = String.format("./builds/DD2480-CI-%s", currentDate);
         File destinationDirectory = new File(destinationPath);
-        GitRepoFetcher repo = new GitRepoFetcher("https://github.com/DD2480-Group-8/DD2480-CI.git");
+        GitRepoFetcher repo = new GitRepoFetcher("https://github.com/DD2480-Group-8/DD2480-CI.git", ref);
         repo.fetchToDestination(destinationDirectory);
         System.out.println("Repo cloned.");
 
