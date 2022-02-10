@@ -15,6 +15,10 @@ import group8.MavenTester;
 import group8.TestLogger;
 import group8.Utilities;
 import group8.git.GitRepoFetcher;
+import group8.Status;
+import group8.LogIO;
+import group8.git.GitCommitStatus;
+
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
@@ -38,18 +42,25 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         String requestBody = Utilities.getRequestBodyAsString(request);
         JsonObject requestJson = Utilities.deserializeRequest(requestBody);
 
-//        System.out.println(requestJson);
-        System.out.println(requestJson.get("ref"));
-        System.out.println(String.format("request received on %s", target));
+        // Get necessary data from incoming post request.
+        String commitSha = requestJson.get("after").getAsString();
+        String repoName = requestJson.get("repository").getAsJsonObject().get("name").getAsString();
+        String ownerName = requestJson.get("repository").getAsJsonObject().get("owner").getAsJsonObject().get("name").getAsString();
+        GitCommitStatus commitStatus = new GitCommitStatus(ownerName, repoName, commitSha);
 
-        String currentDate = CurrentDate.getCurrentDate();
+        //Sends the PENDING status to GitHub.
+        commitStatus.sendGitStatus(Status.PENDING);
+
+        
 
         // here you do all the continuous integration tasks
         // for example
         // 1st clone your repository
         // 2nd compile the code
         System.out.println("Cloning repo...");
-        File destinationDirectory = new File(String.format("./builds/DD2480-CI-%s", currentDate));
+        String currentDate = CurrentDate.getCurrentDate();
+        String destinationPath = String.format("./builds/DD2480-CI-%s", currentDate);
+        File destinationDirectory = new File(destinationPath);
         GitRepoFetcher repo = new GitRepoFetcher("https://github.com/DD2480-Group-8/DD2480-CI.git");
         repo.fetchToDestination(destinationDirectory);
         System.out.println("Repo cloned.");
@@ -61,6 +72,10 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         log.writeLogToDestination(destinationDirectory);
 
         System.out.println(currentDate);
+
+        //Sends the result of the build to Github.
+        Status buildres = LogIO.getBuildResult(destinationPath + "/target/surefire-reports");
+        commitStatus.sendGitStatus(buildres);
 
         response.getWriter().println("CI job done");
     }
