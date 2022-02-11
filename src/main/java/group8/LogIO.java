@@ -21,6 +21,7 @@ public class LogIO {
         File dir = new File(targetPath);
         System.out.println("Name of target file = " + dir.getName());
         File[] buildLogs = dir.listFiles();
+        System.out.println("Num of logs found = " + buildLogs.length);
         for(File log : buildLogs){
             
             //Extracts the filename of a test log to check file extension.
