@@ -23,7 +23,7 @@ public class CurrentDate {
      * @param str a string containing spaces
      * @return a string with hyphens instead of spaces: "hello world" -> "hello-world"
      */
-    private static String replaceSpaceWithHyphen(String str) {
+    protected static String replaceSpaceWithHyphen(String str) {
         if (str != null && str.trim().length() > 0) {
             str = str.toLowerCase();
             String patternStr = "\\s+";
@@ -45,7 +45,7 @@ public class CurrentDate {
      * @param str a string containing colons
      * @return a string with hyphens instead of colons: "hello:world" -> "hello-world"
      */
-    private static String replaceColonWithHyphen(String str) {
+    protected static String replaceColonWithHyphen(String str) {
         if (str != null && str.trim().length() > 0) {
             str = str.toLowerCase();
             String patternStr = ":+";
