@@ -42,6 +42,6 @@ Our team has achieved most of the statements in the Essence Checklist for Team. 
 
 **Viktor:** 
 
-**Joakim:** 
+**Joakim:** Initialization of project, cloning of a specific repository, refactoring, javadoc descriptions and generation 
 
 **Jovan:** README, refactoring
