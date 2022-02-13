@@ -1,6 +1,7 @@
 package group8;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class LogIOTest {
@@ -10,6 +11,7 @@ public class LogIOTest {
      * Tests that Status.SUCESS is returned when logs with no failures or errors
      * are searched. 
      */
+    @Ignore
     @Test
     public void getBuildResultPositiveTest(){
         Status res = LogIO.getBuildResult("./src/test/java/group8/testlogsSuccess");
@@ -20,6 +22,7 @@ public class LogIOTest {
      * Tests that Status.FAILURE is returned when logs with failures
      * are searched
      */
+    @Ignore
     @Test
     public void getBuildResultNegativeTest(){
         Status res = LogIO.getBuildResult("./src/test/java/group8/testlogsFail");
