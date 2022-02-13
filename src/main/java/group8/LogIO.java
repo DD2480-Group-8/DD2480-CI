@@ -6,12 +6,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;  
 import java.io.File;  
 
-import java.nio.file.DirectoryStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
-
-
 
 public class LogIO {
     /**
@@ -22,25 +16,12 @@ public class LogIO {
     public static Status getBuildResult(String targetPath){
 
         //Gets directory with logs and loops through the existing logs.
-        //System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        //File dir = new File(targetPath);
-        //System.out.println("Name of target file = " + dir.getName());
-        //File[] buildLogs = dir.listFiles();
-        //System.out.println("Num of logs found = " + buildLogs.length);
+        File dir = new File(targetPath);
+        File[] buildLogs = dir.listFiles();
         
-        DirectoryStream<Path> stream;
-        try{
-            stream = Files.newDirectoryStream(Paths.get(targetPath));
-        }catch(Exception e){
-            System.out.println("ERROR");
-            return null;
-        }
-
-
-        for(Path logP : stream){
+        for(File log : buildLogs){
             
             //Extracts the filename of a test log to check file extension.
-            File log = logP.toFile();
             String[] s = log.getName().split("\\.");
             if(s[s.length-1].equals("xml")){
                 Document xmlLog;  
