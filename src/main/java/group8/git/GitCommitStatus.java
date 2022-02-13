@@ -11,6 +11,9 @@ import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
 
+/**
+ * Git status handler to send different git statuses
+ */
 public class GitCommitStatus {
     private final String url;
     private final String owner;
