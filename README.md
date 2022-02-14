@@ -49,7 +49,7 @@ Our team has achieved most of the statements in the Essence Checklist for Team. 
 
 **Simon:** handling API calls from application to Github, testing of code, reviewed PRs, minor contribution to README
 
-**Viktor:** 
+**Viktor:** unit testing section of README, parsing of build results, unit testing, reviewed PRs, minor contribution to code integration. 
 
 **Joakim:** Initialization of project, cloning of a specific repository, refactoring, javadoc descriptions and generation 
 
