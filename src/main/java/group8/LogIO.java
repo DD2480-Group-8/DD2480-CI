@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;  
 import java.io.File;
 
+
 /**
  * Logger for inputs and outputs
  */
@@ -20,6 +21,7 @@ public class LogIO {
         //Gets directory with logs and loops through the existing logs.
         File dir = new File(targetPath);
         File[] buildLogs = dir.listFiles();
+        
         for(File log : buildLogs){
             
             //Extracts the filename of a test log to check file extension.
