@@ -9,6 +9,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 
 import java.io.IOException;
 
+/**
+ * Unit tests for utility functions
+ */
 public class UtilitiesTest {
 
     /**
@@ -63,6 +66,16 @@ public class UtilitiesTest {
                 Utilities.getRequestBodyAsString(mockRequest),
                 ""
         );
+    }
+
+    @Test
+    public void getRefSuffixValidTest() {
+        Assert.assertEquals("issue1", Utilities.getRefSuffix("refs/heads/issue/1"));
+    }
+
+    @Test
+    public void getRefSuffixInvalidTest() {
+        Assert.assertEquals("containsNoSlashes", Utilities.getRefSuffix("containsNoSlashes"));
     }
 
 }
