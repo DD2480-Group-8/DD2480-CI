@@ -37,15 +37,13 @@ public class GitCommitStatus {
     }
 
     /**
-     * Given a Status, this function will create a JsonObject with a correct state and short
-     * description of the situation. An HTTP Client is created and will send an HTTP Post request
-     * to GitHub, changing the status of a commit.
-     *
-     * @param status Enum Status, will depend on the status of the build and tests
-     * @throws IOException If something goes wrong with the Http client this exception is thrown
-     * @return response The response of the HTTP clients HTTP Post to Github
+     * Method that creates the JsonObject that will be sent along with the 
+     * HTTP Post to Github.
+     * 
+     * @param status If the build and tests are run, and if they succeeded or not
+     * @return The complete JsonObject with the correct state set and a small description
      */
-    public CloseableHttpResponse sendGitStatus(Status status) throws IOException {
+    JsonObject createHTTPBody(Status status) {
         JsonObject jsonObject = new JsonObject();
 
         // Possible outcomes: success, error, failure, pending
@@ -62,6 +60,20 @@ public class GitCommitStatus {
             jsonObject.addProperty("state", "pending");
             jsonObject.addProperty("description", "Build and tests are ongoing!");
         }
+        
+        return jsonObject;
+    }
+
+    /**
+     * Given a Status, this function will call createHTTPBody to get a JsonObject. 
+     * An HTTP Client is created and will send an HTTP Post request to GitHub, changing the status of a commit.
+     *
+     * @param status Enum Status, will depend on the status of the build and tests
+     * @throws IOException If something goes wrong with the Http client this exception is thrown
+     * @return response The response of the HTTP clients HTTP Post to Github
+     */
+    public CloseableHttpResponse sendGitStatus(Status status) throws IOException {
+        JsonObject jsonObject = createHTTPBody(status);
 
         try(final CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost(url);
@@ -73,8 +85,6 @@ public class GitCommitStatus {
 
             httpPost.setEntity(se);
             CloseableHttpResponse response = httpClient.execute(httpPost);
-
-            System.out.println(response.getStatusLine());
 
             return response;
         }
