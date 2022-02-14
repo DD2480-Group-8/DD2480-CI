@@ -36,7 +36,7 @@ and the token needs, at least, the repo:status scope.
 Our team has achieved most of the statements in the Essence Checklist for Team. Our team has achieved all points of the "Seeded" stage, as before emabarking on the assignment we have defined our intended outcomes and discussed our responsibilities, as well as make sure everyone is on the same page in terms of how we will proceed with the project. Our team also passes the "Formed" stage as we understand our individual responsibilities. While some members might not fully understand how to perform their work, our group has discussed and decided that we will take up roles that align with our competencies and if not, will reach out to the other group members for help. This leads to the "Collaborating" stage where we feel the matter of "working as one cohesive unit" is still in progress, given that some members might still need help from others with their tasks. Nonetheless, we communicate openly and honestly with each other and would progress on further once we are able to work cohesively. Parts of the "Performing" stage are also a work in progress as there are instances where reworking and backtracking is necessary and we have yet to completely eliminate wasted work. Finally, we have not reached the "Ajourned" stage as the project is still ongoing.  
 
 ## Statement of Contributions
-**Emil:** 
+**Emil:** handling incoming POST request on push, cloning of specific branch, compiling, testing and storing of builds, combining different parts of the project, general unit tests
 
 **Simon:** 
 
