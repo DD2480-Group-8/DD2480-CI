@@ -1,0 +1,51 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< group-8:DD2480-CI >--------------------------
+[INFO] Building DD2480-CI 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ DD2480-CI ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ DD2480-CI ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 11 source files to /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ DD2480-CI ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ DD2480-CI ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ DD2480-CI ---
+[INFO] Surefire report directory: /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running group8.TestApp
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec
+Running group8.UtilitiesTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.053 sec
+
+Results :
+
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ DD2480-CI ---
+[INFO] Building jar: /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/target/DD2480-CI-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-assembly-plugin:3.3.0:single (make-assembly) @ DD2480-CI ---
+[INFO] Building jar: /Users/emilmyresten/Dropbox/KTH/KTH Medieteknik/År 4/Period 3/DD2480 Fundamentals of Software Engineering/DD2480-CI/builds/assessment/DD2480-CI-fri-feb-11-00-17-37-cet-2022/target/DD2480-CI-1.0-SNAPSHOT-jar-with-dependencies.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.827 s
+[INFO] Finished at: 2022-02-11T00:17:46+01:00
+[INFO] ------------------------------------------------------------------------
