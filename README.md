@@ -38,7 +38,7 @@ Our team has achieved most of the statements in the Essence Checklist for Team. 
 ## Statement of Contributions
 **Emil:** handling incoming POST request on push, cloning of specific branch, compiling, testing and storing of builds, combining different parts of the project, general unit tests
 
-**Simon:** 
+**Simon:** handling API calls from application to Github, testing of code, reviewed PRs, minor contribution to README
 
 **Viktor:** 
 
