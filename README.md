@@ -32,6 +32,15 @@ This field is a Personal Access Token and should _not_ be checked into the repos
 to read a tutorial. Important to know is that you need write permission to the repo in question to be able to perform this action,
 and the token needs, at least, the repo:status scope. 
 
+## Unit Tests
+Unit testing of the project is somewhat limited by some networking and I/O issues. Some parts of the project are dificult to test at all, and some tests only work when running the code locally (and not when using Maven with GitHub Actions).
+
+### Testing of CI Server Compiling/Testing
+The code itself that runs the project on the CI server is not unit tested, since this is both difficult and largly pointless due to this being achieved with one line of code. What is tested are the functions handling the recieved HTTP requests, as well as other similar helper functions. The parsing of compilation/testing results is also unit tested in the LogIOTest class using dummy log files. However, these tests are ignored by default due to issues with GitHub Actions, and have to be enabled manually when testing. 
+
+### Notification
+The sending of the build status to GitHub is unit tested in the GitCommitStatusTest class. One of the tests, concerned with testing sending the status as a Http request, is ignored by default, as this test too does not work with GitHub Actions. 
+
 ## Essence
 Our team has achieved most of the statements in the Essence Checklist for Team. Our team has achieved all points of the "Seeded" stage, as before emabarking on the assignment we have defined our intended outcomes and discussed our responsibilities, as well as make sure everyone is on the same page in terms of how we will proceed with the project. Our team also passes the "Formed" stage as we understand our individual responsibilities. While some members might not fully understand how to perform their work, our group has discussed and decided that we will take up roles that align with our competencies and if not, will reach out to the other group members for help. This leads to the "Collaborating" stage where we feel the matter of "working as one cohesive unit" is still in progress, given that some members might still need help from others with their tasks. Nonetheless, we communicate openly and honestly with each other and would progress on further once we are able to work cohesively. Parts of the "Performing" stage are also a work in progress as there are instances where reworking and backtracking is necessary and we have yet to completely eliminate wasted work. Finally, we have not reached the "Ajourned" stage as the project is still ongoing.  
 
