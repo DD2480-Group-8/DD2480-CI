@@ -29,11 +29,14 @@ public class TestLogger {
 
     /**
      * Writes logs to specified directory
-     * @param destinationDirectory directory to save the logs
+     * @param logDestination directory to save the logs
+     * @param branchName the name of the branch which was pulled
+     * @param sha commit identifier
+     * @param date the time of compilation which produced the output.
      * @throws IOException on writing errors
      */
-    public void writeLogToDestination(File destinationDirectory) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/output.txt", destinationDirectory)));
+    public void writeLogToDestination(File logDestination, String branchName, String sha, String date) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s-%s-%s.txt", logDestination, branchName, sha, date)));
         writer.write(stringBuilder.toString());
         writer.close();
     }

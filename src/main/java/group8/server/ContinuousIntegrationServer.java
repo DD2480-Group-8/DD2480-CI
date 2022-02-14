@@ -71,7 +71,12 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         Process process = MavenTester.mvnVerifyInDirectory(destinationDirectory);
         TestLogger log = new TestLogger();
         log.logProcess(process);
-        log.writeLogToDestination(destinationDirectory);
+        log.writeLogToDestination(
+                new File("./history"),
+                branchName,
+                commitSha,
+                currentDate
+        );
 
         System.out.println(currentDate);
 
