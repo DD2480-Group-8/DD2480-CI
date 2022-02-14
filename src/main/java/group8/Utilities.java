@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Objects;
 
+/**
+ * Utility class for serialize and deserialize requests
+ */
 public class Utilities {
 
     /**
