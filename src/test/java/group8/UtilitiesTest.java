@@ -9,6 +9,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 
 import java.io.IOException;
 
+/**
+ * Unit tests for utility functions
+ */
 public class UtilitiesTest {
 
     /**
