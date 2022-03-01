@@ -49,7 +49,7 @@ public class UtilitiesTest {
         mockRequest.setContent(bytes);
         Assert.assertEquals(
                 Utilities.getRequestBodyAsString(mockRequest),
-                "{\n'para':'param'\n}\n"
+                "{\n'param':'param'\n}\n"
         );
     }
 
