@@ -1,7 +1,7 @@
 # DD2480-CI
 ### Assigment 2 of DD2480
 The goal of this assignment is to master the core of continuous integration. To achieve this goal, we implemented a small continuous integration CI server. This CI server will only contain the core features of continuous integration. 
-
+ 
 The CI server supports compiling the group project, executing the automated tests of the group project, and supports notification of CI results.
 
 ---------
